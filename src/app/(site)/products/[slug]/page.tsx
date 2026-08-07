@@ -7,8 +7,6 @@ import AddToCartForm from "@/components/AddToCartForm";
 import ProductCard from "@/components/ProductCard";
 import ProductImage from "@/components/ProductImage";
 import StickyAddToCart from "@/components/StickyAddToCart";
-import SaveToBuyButton from "@/components/SaveToBuyButton";
-import { getSession } from "@/lib/auth";
 import Reveal from "@/components/motion/Reveal";
 import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
 import { ShieldCheck, Truck } from "lucide-react";
@@ -39,7 +37,6 @@ export default async function ProductDetailPage({
   const product = await database.getProductBySlug(slug);
   if (!product) notFound();
 
-  const session = await getSession();
   const allProducts = await database.getProducts();
   const related = allProducts
     .filter((p) => p.category === product.category && p.id !== product.id)
@@ -62,7 +59,7 @@ export default async function ProductDetailPage({
 
       <div className="grid lg:grid-cols-2 gap-12">
         <ProductImage
-          src={product.images[0]}
+          images={product.images}
           alt={product.name}
           badge={product.condition === "new" ? "Brand New" : "UK Used"}
           discount={discount}
@@ -103,16 +100,6 @@ export default async function ProductDetailPage({
               price={product.price}
               image={product.images[0]}
               stock={product.stock}
-            />
-          </div>
-
-          <div className="mt-3">
-            <SaveToBuyButton
-              productId={product.id}
-              productName={product.name}
-              productImage={product.images[0]}
-              price={product.price}
-              isLoggedIn={!!session}
             />
           </div>
 

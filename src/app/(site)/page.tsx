@@ -41,7 +41,7 @@ export default async function Home() {
 
       {/* CATEGORIES */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <StaggerGrid className="grid sm:grid-cols-3 gap-5">
+        <StaggerGrid className="grid grid-cols-3 gap-5">
           {[
             { label: "Laptops", href: "/products?category=laptops", desc: "New &amp; UK used, all specs" },
             { label: "Phones", href: "/products?category=phones", desc: "iPhone, Samsung &amp; more" },

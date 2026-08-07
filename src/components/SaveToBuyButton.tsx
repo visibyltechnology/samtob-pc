@@ -14,14 +14,24 @@ export default function SaveToBuyButton({
   productImage,
   price,
   isLoggedIn,
+  open: controlledOpen,
+  onOpenChange,
 }: {
   productId: string;
   productName: string;
   productImage: string;
   price: number;
   isLoggedIn: boolean;
+  // Omit these two to get the original self-contained trigger+modal (product page).
+  // Pass them to run this as a controlled, trigger-less modal (checkout).
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const isControlled = controlledOpen !== undefined && onOpenChange !== undefined;
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isControlled ? controlledOpen : internalOpen;
+  const setOpen = isControlled ? onOpenChange! : setInternalOpen;
+
   const [frequency, setFrequency] = useState<"weekly" | "monthly">("monthly");
   const [months, setMonths] = useState(3);
   const [submitting, setSubmitting] = useState(false);
@@ -59,15 +69,17 @@ export default function SaveToBuyButton({
 
   return (
     <>
-      <motion.button
-        type="button"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.97 }}
-        onClick={() => setOpen(true)}
-        className="w-full inline-flex items-center justify-center gap-2 border border-line px-6 py-3.5 rounded-full font-medium text-sm hover:border-signal hover:text-signal transition-colors"
-      >
-        <PiggyBank size={16} /> Save Toward This Device
-      </motion.button>
+      {!isControlled && (
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => setOpen(true)}
+          className="w-full inline-flex items-center justify-center gap-2 border border-line px-6 py-3.5 rounded-full font-medium text-sm hover:border-signal hover:text-signal transition-colors"
+        >
+          <PiggyBank size={16} /> Save Toward This Device
+        </motion.button>
+      )}
 
       <AnimatePresence>
         {open && (
