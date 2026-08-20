@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
     return config;
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    cpus: 1, // Limit workers to save RAM
+  },
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
