@@ -33,10 +33,10 @@
   "/admin/(protected)/page": "app/admin/(protected)/page.js",
   "/admin/(protected)/products/page": "app/admin/(protected)/products/page.js",
   "/admin/(protected)/save-to-buy/page": "app/admin/(protected)/save-to-buy/page.js",
-  "/(site)/faq/page": "app/(site)/faq/page.js",
   "/(site)/delivery/page": "app/(site)/delivery/page.js",
+  "/(site)/products/[slug]/page": "app/(site)/products/[slug]/page.js",
   "/(site)/page": "app/(site)/page.js",
+  "/(site)/faq/page": "app/(site)/faq/page.js",
   "/(site)/stores/page": "app/(site)/stores/page.js",
-  "/(site)/products/page": "app/(site)/products/page.js",
-  "/(site)/products/[slug]/page": "app/(site)/products/[slug]/page.js"
+  "/(site)/products/page": "app/(site)/products/page.js"
 }

@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next({ request });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
   // If these aren't set, don't crash the whole site — just skip the session
   // refresh. Every Supabase-backed page/API route will still fail on its own
@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   // pages (home, FAQ, delivery, stores, etc.) keep working.
   if (!supabaseUrl || !supabaseAnonKey) {
     console.warn(
-      "[middleware] NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY are not set — skipping auth session refresh. Add them in your environment (e.g. Vercel -> Project Settings -> Environment Variables) or .env.local."
+      "[middleware] NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY are not set — skipping auth session refresh. Add them in your environment (e.g. Vercel -> Project Settings -> Environment Variables) or .env.local."
     );
     return response;
   }

@@ -33,10 +33,10 @@
   "/admin/(protected)/page": "/admin",
   "/admin/(protected)/products/page": "/admin/products",
   "/admin/(protected)/save-to-buy/page": "/admin/save-to-buy",
-  "/(site)/faq/page": "/faq",
   "/(site)/delivery/page": "/delivery",
+  "/(site)/products/[slug]/page": "/products/[slug]",
   "/(site)/page": "/",
+  "/(site)/faq/page": "/faq",
   "/(site)/stores/page": "/stores",
-  "/(site)/products/page": "/products",
-  "/(site)/products/[slug]/page": "/products/[slug]"
+  "/(site)/products/page": "/products"
 }
