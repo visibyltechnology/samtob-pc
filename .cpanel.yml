@@ -1,5 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/samteslp/public_html
+    - export DEPLOYPATH=/home/samteslp/samtob_app
+    - /bin/mkdir -p $DEPLOYPATH
     - /bin/cp -R . $DEPLOYPATH
