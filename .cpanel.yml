@@ -3,4 +3,3 @@ deployment:
   tasks:
     - source /home/samteslp/nodevenv/samtob_app/24/bin/activate
     - npm install
-    - npm run build
