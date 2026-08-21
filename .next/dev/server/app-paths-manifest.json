@@ -21,6 +21,7 @@
   "/api/auth/login/route": "app/api/auth/login/route.js",
   "/api/auth/logout/route": "app/api/auth/logout/route.js",
   "/api/auth/register/route": "app/api/auth/register/route.js",
+  "/api/flash-sale/route": "app/api/flash-sale/route.js",
   "/api/orders/[id]/route": "app/api/orders/[id]/route.js",
   "/api/orders/route": "app/api/orders/route.js",
   "/api/save-to-buy/[id]/contributions/route": "app/api/save-to-buy/[id]/contributions/route.js",

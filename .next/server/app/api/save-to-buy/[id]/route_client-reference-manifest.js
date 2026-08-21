@@ -1,1 +1,0 @@
-globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/api/save-to-buy/[id]/route"]={"moduleLoading":{"prefix":"/_next/"},"ssrModuleMapping":{},"edgeSSRModuleMapping":{},"clientModules":{},"entryCSSFiles":{"C:\\Users\\Hassan\\Desktop\\samtob\\src\\app\\api\\save-to-buy\\[id]\\route":[]},"rscModuleMapping":{},"edgeRscModuleMapping":{}};

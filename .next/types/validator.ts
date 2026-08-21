@@ -281,6 +281,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/api/flash-sale/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/flash-sale">> = Specific
+  const handler = {} as typeof import("../../src/app/api/flash-sale/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/api/klump/verify/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/klump/verify">> = Specific
