@@ -3,6 +3,7 @@ import { ArrowRight, ShieldCheck, Truck, Repeat, Wrench } from "lucide-react";
 import { database } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
 import Hero from "@/components/home/Hero";
+import TopBanner from "@/components/TopBanner";
 import BrandMarquee from "@/components/home/BrandMarquee";
 import Reveal from "@/components/motion/Reveal";
 import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
@@ -18,6 +19,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <TopBanner />
       <BrandMarquee />
 
       {/* STATS STRIP */}
@@ -41,7 +43,7 @@ export default async function Home() {
 
       {/* CATEGORIES */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <StaggerGrid className="grid grid-cols-3 gap-5">
+        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {[
             { label: "Laptops", href: "/products?category=laptops", desc: "New &amp; UK used, all specs" },
             { label: "Phones", href: "/products?category=phones", desc: "iPhone, Samsung &amp; more" },
@@ -91,7 +93,7 @@ export default async function Home() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { icon: ShieldCheck, title: "Warranty on every device", desc: "1yr on new, 30-day guaranty on UK used." },
+            { icon: ShieldCheck, title: "Warranty on every device", desc: "1yr on new, 30 days warranty on UK used." },
             { icon: Truck, title: "Nationwide delivery", desc: "Free delivery on qualifying orders — shipped anywhere in Nigeria." },
             { icon: Repeat, title: "Trade-in accepted", desc: "Swap your old SAMTOB device for a new one." },
             { icon: Wrench, title: "Professional repairs", desc: "Affordable, expert repair services in-store." },

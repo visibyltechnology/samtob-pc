@@ -44,6 +44,7 @@ export type Order = {
   paymentMethod: "bank-transfer" | "klump" | "save-to-buy";
   paymentStatus: "awaiting_confirmation" | "paid" | "failed";
   bankReference: string | null;
+  receiptUrl: string | null;
   klumpReference: string | null;
   status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
   createdAt: string;
@@ -68,6 +69,7 @@ export type Contribution = {
   planId: string;
   amount: number;
   bankReference: string | null;
+  receiptUrl: string | null;
   status: "pending" | "confirmed" | "rejected";
   createdAt: string;
   confirmedAt: string | null;
@@ -132,6 +134,7 @@ function toOrder(r: any): Order {
     paymentMethod: r.payment_method,
     paymentStatus: r.payment_status,
     bankReference: r.bank_reference,
+    receiptUrl: r.receipt_url,
     klumpReference: r.klump_reference,
     status: r.status,
     createdAt: r.created_at,
@@ -160,6 +163,7 @@ function toContribution(r: any): Contribution {
     planId: r.plan_id,
     amount: r.amount,
     bankReference: r.bank_reference,
+    receiptUrl: r.receipt_url,
     status: r.status,
     createdAt: r.created_at,
     confirmedAt: r.confirmed_at,
@@ -258,6 +262,7 @@ export const database = {
       total: number;
       paymentMethod: Order["paymentMethod"];
       bankReference?: string | null;
+      receiptUrl?: string | null;
     },
     client: SupabaseClient
   ): Promise<Order> {
@@ -278,6 +283,7 @@ export const database = {
         total: order.total,
         payment_method: order.paymentMethod,
         bank_reference: order.bankReference || null,
+        receipt_url: order.receiptUrl || null,
       })
       .select()
       .single();
@@ -380,7 +386,7 @@ export const database = {
   },
 
   async createContribution(
-    contribution: { planId: string; amount: number; bankReference: string | null },
+    contribution: { planId: string; amount: number; bankReference: string | null; receiptUrl: string | null },
     client?: SupabaseClient
   ): Promise<Contribution> {
     const supabase = client || (await createClient());
@@ -390,6 +396,7 @@ export const database = {
         plan_id: contribution.planId,
         amount: contribution.amount,
         bank_reference: contribution.bankReference,
+        receipt_url: contribution.receiptUrl,
       })
       .select()
       .single();

@@ -288,10 +288,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_mo
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/lucide-react/dist/esm/icons/menu.mjs [app-ssr] (ecmascript) <export default as Menu>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/lucide-react/dist/esm/icons/x.mjs [app-ssr] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/lucide-react/dist/esm/icons/search.mjs [app-ssr] (ecmascript) <export default as Search>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/next/image.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$src$2f$lib$2f$cart$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/src/lib/cart-context.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$src$2f$lib$2f$auth$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/src/lib/auth-context.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$src$2f$components$2f$AccountMenu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/src/components/AccountMenu.tsx [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -362,7 +364,7 @@ function Header() {
                 className: "divider-wave"
             }, void 0, false, {
                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                lineNumber: 49,
+                lineNumber: 50,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -370,7 +372,7 @@ function Header() {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                     className: "flex items-center justify-between",
                     animate: {
-                        height: scrolled ? 60 : 68
+                        height: scrolled ? 68 : 80
                     },
                     transition: {
                         duration: 0.25
@@ -378,82 +380,21 @@ function Header() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
-                            className: "flex items-center gap-1 font-display font-bold text-xl tracking-tight",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-signal",
-                                    children: "SAM"
-                                }, void 0, false, {
-                                    fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 57,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "relative inline-flex items-center justify-center w-6 h-6",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
-                                            className: "absolute w-6 h-6 rounded-full border-2 border-signal",
-                                            animate: {
-                                                opacity: [
-                                                    0.15,
-                                                    0.4,
-                                                    0.15
-                                                ],
-                                                scale: [
-                                                    1,
-                                                    1.15,
-                                                    1
-                                                ]
-                                            },
-                                            transition: {
-                                                duration: 2.4,
-                                                repeat: Infinity,
-                                                ease: "easeInOut"
-                                            }
-                                        }, void 0, false, {
-                                            fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 59,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "absolute w-4 h-4 rounded-full border-2 border-signal opacity-50"
-                                        }, void 0, false, {
-                                            fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 64,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "w-2 h-2 rounded-full bg-signal"
-                                        }, void 0, false, {
-                                            fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 65,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 58,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "TOB"
-                                }, void 0, false, {
-                                    fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 67,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "ml-1 text-xs font-data font-normal text-steel tracking-widest",
-                                    children: "P&C"
-                                }, void 0, false, {
-                                    fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 68,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            className: "flex items-center gap-1",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                src: "/logo.jpg",
+                                alt: "SAMTOB P&C Logo",
+                                width: 280,
+                                height: 72,
+                                className: "h-16 w-auto object-contain mix-blend-multiply"
+                            }, void 0, false, {
+                                fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
+                                lineNumber: 58,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                            lineNumber: 56,
+                            lineNumber: 57,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -467,18 +408,18 @@ function Header() {
                                             className: "absolute left-0 -bottom-0.5 h-[1.5px] w-0 bg-signal group-hover:w-full transition-all duration-300"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 69,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, item.href, true, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 63,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                            lineNumber: 71,
+                            lineNumber: 61,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -492,17 +433,17 @@ function Header() {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 80,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 75,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$src$2f$components$2f$AccountMenu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 82,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -514,7 +455,7 @@ function Header() {
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 98,
+                                            lineNumber: 88,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -537,18 +478,18 @@ function Header() {
                                                 children: count
                                             }, count, false, {
                                                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                                lineNumber: 101,
+                                                lineNumber: 91,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 89,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 93,
+                                    lineNumber: 83,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -579,45 +520,45 @@ function Header() {
                                                 size: 22
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 118,
                                                 columnNumber: 27
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                                 size: 22
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 118,
                                                 columnNumber: 45
                                             }, this)
                                         }, open ? "close" : "menu", false, {
                                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 110,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                        lineNumber: 119,
+                                        lineNumber: 109,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 114,
+                                    lineNumber: 104,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                            lineNumber: 84,
+                            lineNumber: 74,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                    lineNumber: 51,
+                    lineNumber: 52,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                lineNumber: 50,
+                lineNumber: 51,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -661,12 +602,12 @@ function Header() {
                                         children: item.label
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                        lineNumber: 153,
+                                        lineNumber: 143,
                                         columnNumber: 19
                                     }, this)
                                 }, item.href, false, {
                                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 137,
                                     columnNumber: 17
                                 }, this)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -676,7 +617,7 @@ function Header() {
                                 children: loggedIn ? `My Dashboard${profile?.name ? ` (${profile.name.split(" ")[0]})` : ""}` : "Account Login"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                lineNumber: 162,
+                                lineNumber: 152,
                                 columnNumber: 15
                             }, this),
                             loggedIn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -691,29 +632,29 @@ function Header() {
                                 children: "Log Out"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                                lineNumber: 170,
+                                lineNumber: 160,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                        lineNumber: 145,
+                        lineNumber: 135,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                    lineNumber: 138,
+                    lineNumber: 128,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-                lineNumber: 136,
+                lineNumber: 126,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/samtob/src/components/Header.tsx",
-        lineNumber: 40,
+        lineNumber: 41,
         columnNumber: 5
     }, this);
 }

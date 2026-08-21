@@ -22,15 +22,19 @@ export const metadata: Metadata = {
     "gadgets Nigeria",
   ],
   openGraph: {
-    title: "SAMTOB P&C | Laptops, Phones & Gadgets — Nationwide Delivery",
+    title: "SAMTOB P&C | Premium Tech, Phones & Laptops in Nigeria",
     description:
-      "New & UK used laptops, phones and gadgets. Shop online, pay on delivery options, nationwide shipping.",
+      "New & UK used laptops, phones and gadgets. Shop online, nationwide shipping.",
     url: "https://www.samtobpc.com",
     siteName: "SAMTOB P&C",
     locale: "en_NG",
     type: "website",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  },
 };
 
 export default function RootLayout({

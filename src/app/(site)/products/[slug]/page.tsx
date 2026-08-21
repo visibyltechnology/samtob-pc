@@ -109,7 +109,7 @@ export default async function ProductDetailPage({
               <span className="text-steel">
                 {product.warrantyDays >= 365
                   ? "1 year full warranty on this brand new device."
-                  : `${product.warrantyDays}-day limited guaranty on this UK used device (excludes user/physical/power damage).`}
+                  : `${product.warrantyDays} days warranty on this UK used device (excludes user/physical/power damage).`}
               </span>
             </div>
             <div className="flex items-start gap-3 text-sm">

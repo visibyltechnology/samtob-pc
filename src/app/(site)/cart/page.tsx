@@ -43,7 +43,7 @@ export default function CartPage() {
                 className="flex gap-4 border border-line rounded-2xl p-4 overflow-hidden"
               >
                 <div className="relative w-24 h-24 bg-[#F5F4F0] rounded-xl overflow-hidden shrink-0">
-                  <Image src={item.image} alt={item.name} fill className="object-contain p-3" />
+                <Image src={item.image} alt={item.name} fill sizes="96px" className="object-contain p-3" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <div className="flex justify-between gap-3">

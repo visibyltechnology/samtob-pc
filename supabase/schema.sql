@@ -120,6 +120,7 @@ create table if not exists public.orders (
   payment_status text not null default 'awaiting_confirmation'
     check (payment_status in ('awaiting_confirmation', 'paid', 'failed')),
   bank_reference text,
+  receipt_url text,
   klump_reference text,
   status text not null default 'pending'
     check (status in ('pending', 'processing', 'shipped', 'delivered', 'cancelled')),
@@ -191,6 +192,7 @@ create table if not exists public.save_to_buy_contributions (
   plan_id uuid not null references public.save_to_buy_plans(id) on delete cascade,
   amount integer not null check (amount > 0),
   bank_reference text,
+  receipt_url text,
   status text not null default 'pending' check (status in ('pending', 'confirmed', 'rejected')),
   created_at timestamptz not null default now(),
   confirmed_at timestamptz

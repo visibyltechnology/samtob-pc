@@ -25,10 +25,15 @@ export default function ImageUploader({
       for (const file of Array.from(files)) {
         const formData = new FormData();
         formData.append("file", file);
-        const res = await fetch("/api/upload", { method: "POST", body: formData });
+        formData.append("upload_preset", "samtop-pc");
+        
+        const res = await fetch("https://api.cloudinary.com/v1_1/drqqa0jp/image/upload", { 
+          method: "POST", 
+          body: formData 
+        });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Upload failed");
-        uploaded.push(data.url);
+        if (!res.ok) throw new Error(data.error?.message || "Upload failed");
+        uploaded.push(data.secure_url);
       }
       onChange([...images, ...uploaded]);
       showToast(`${uploaded.length} image${uploaded.length > 1 ? "s" : ""} uploaded`, "success");
@@ -66,7 +71,7 @@ export default function ImageUploader({
               exit={{ opacity: 0, scale: 0.8 }}
               className="relative aspect-square rounded-lg overflow-hidden bg-[#F5F4F0] border border-line group"
             >
-              <Image src={src} alt={`Image ${i + 1}`} fill className="object-contain p-1.5" />
+              <Image src={src} alt={`Image ${i + 1}`} fill sizes="20vw" className="object-contain p-1.5" />
               {i === 0 && (
                 <span className="absolute bottom-1 left-1 bg-ink text-white text-[9px] px-1.5 py-0.5 rounded-full font-data">
                   Primary

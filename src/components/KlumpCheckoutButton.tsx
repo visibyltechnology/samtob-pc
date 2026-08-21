@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useKlumpReady } from "@/lib/use-klump-ready";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface KlumpCheckoutButtonProps {
-  /** Sum of (unit_price * quantity) across items, PLUS shippingFee. Must match exactly. */
   amount: number;
   shippingFee: number;
   items: Array<{
@@ -20,11 +19,32 @@ interface KlumpCheckoutButtonProps {
   merchantReference: string;
   redirectUrl: string;
   onSuccess: (reference: string) => void;
-  /** Show a small on-screen debug panel. Defaults to true in development. */
-  debug?: boolean;
 }
 
-const DEBUG_PREFIX = "[Klump]";
+function getKlump() {
+  try {
+    // eslint-disable-next-line no-eval
+    return (0, eval)("Klump");
+  } catch {
+    return undefined;
+  }
+}
+
+let klumpScriptPromise: Promise<void> | null = null;
+function loadKlumpScript(): Promise<void> {
+  if (klumpScriptPromise) return klumpScriptPromise;
+  klumpScriptPromise = new Promise((resolve, reject) => {
+    const scriptId = "klump-js-script";
+    if (document.getElementById(scriptId)) { resolve(); return; }
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = "https://js.useklump.com/klump.js";
+    script.onload = () => resolve();
+    script.onerror = () => { klumpScriptPromise = null; reject(new Error("Failed to load Klump script")); };
+    document.body.appendChild(script);
+  });
+  return klumpScriptPromise;
+}
 
 export default function KlumpCheckoutButton({
   amount,
@@ -37,135 +57,145 @@ export default function KlumpCheckoutButton({
   merchantReference,
   redirectUrl,
   onSuccess,
-  debug = process.env.NODE_ENV !== "production",
 }: KlumpCheckoutButtonProps) {
-  const klumpState = useKlumpReady(); // "checking" | "ready" | "error"
   const [loading, setLoading] = useState(false);
-  const [lastAction, setLastAction] = useState<string>("idle");
-  const [lastError, setLastError] = useState<string>("");
+  const [klumpOpen, setKlumpOpen] = useState(false);
+  const [error, setError] = useState("");
 
-  function log(msg: string, ...rest: any[]) {
-    console.debug(DEBUG_PREFIX, msg, ...rest);
-    setLastAction(msg);
-  }
-
-  function handleClick() {
-    log("button clicked");
-
-    if (!window.Klump) {
-      log("window.Klump missing at click time — aborting");
-      return;
+  // Force Klump iframes to lower z-index so cancel button stays on top
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (klumpOpen) {
+      interval = setInterval(() => {
+        document.querySelectorAll('iframe[src*="klump"], [id^="klump"]').forEach((el) => {
+          const element = el as HTMLElement;
+          if (element.style && element.id !== "klump__checkout") {
+            element.style.setProperty("z-index", "2147483640", "important");
+          }
+        });
+        // Also show the checkout div when open
+        const div = document.getElementById("klump__checkout");
+        if (div) div.style.display = "block";
+      }, 200);
+    } else {
+      const div = document.getElementById("klump__checkout");
+      if (div) div.style.display = "none";
     }
+    return () => clearInterval(interval);
+  }, [klumpOpen]);
 
-    const publicKey = process.env.NEXT_PUBLIC_KLUMP_PUBLIC_KEY || "";
-    log("publicKey present?", !!publicKey, publicKey ? `${publicKey.slice(0, 10)}...` : "(empty)");
-
-    const itemsTotal = items.reduce(
-      (sum, i) => sum + Math.round(i.unit_price) * i.quantity,
-      0
-    );
-    const expectedAmount = itemsTotal + Math.round(shippingFee);
-    log("amount check", { passedInAmount: amount, itemsTotal, shippingFee, expectedAmount });
-
-    if (expectedAmount !== Math.round(amount)) {
-      log("⚠️ amount MISMATCH — Klump will likely reject this transaction");
-    }
-
-    // Klump's own client-side validator (decoded from klump.js) only allows
-    // these exact top-level keys on `data`: email, phone, first_name,
-    // last_name, redirect_url, merchant_reference, shipping_fee, meta_data,
-    // shipping_data, mixpanel_distinct_id, amount, currency, items,
-    // discount, tax. Any other key (e.g. "customer", "shopping_cart") makes
-    // the whole payload invalid. `phone`, if present, must be EXACTLY 11
-    // characters (e.g. "08012345678") or Klump throws synchronously.
-    const normalizedPhone = (customerPhone || "").replace(/\D/g, "");
-    const validPhone = normalizedPhone.length === 11 ? normalizedPhone : undefined;
-    if (customerPhone && !validPhone) {
-      log(`⚠️ phone "${customerPhone}" is not exactly 11 digits — omitting it (Klump would reject otherwise)`);
-    }
-
-    const data: Record<string, any> = {
-      merchant_reference: merchantReference,
-      amount: expectedAmount,
-      shipping_fee: Math.round(shippingFee),
-      currency: "NGN",
-      redirect_url: redirectUrl,
-      items: items.map((i) => ({
-        unit_price: Math.round(i.unit_price),
-        quantity: i.quantity,
-        name: i.name,
-        image_url: i.image_url,
-      })),
-    };
-    if (customerEmail) data.email = customerEmail;
-    if (customerFirstName) data.first_name = customerFirstName;
-    if (customerLastName) data.last_name = customerLastName;
-    if (validPhone) data.phone = validPhone;
-
-    const payload = { publicKey, data };
-    log("constructed payload", payload);
-
+  async function handleClick() {
     setLoading(true);
+    setKlumpOpen(true);
+    setError("");
+
     try {
-      new window.Klump({
-        ...payload,
-        onLoad: (d: any) => log("Klump onLoad", d),
-        onOpen: (d: any) => log("Klump onOpen", d),
-        onSuccess: (d: { reference: string }) => {
-          log("Klump onSuccess", d);
-          setLoading(false);
-          onSuccess(d.reference);
+      await loadKlumpScript();
+      const KlumpCtor = getKlump();
+      if (!KlumpCtor) throw new Error("Klump payment service unavailable. Check your connection.");
+
+      const publicKey = process.env.NEXT_PUBLIC_KLUMP_PUBLIC_KEY || "";
+
+      const normalizedPhone = (customerPhone || "").replace(/\D/g, "");
+      const validPhone = normalizedPhone.length === 11 ? normalizedPhone : undefined;
+
+      new KlumpCtor({
+        publicKey,
+        data: {
+          amount,
+          shipping_fee: shippingFee,
+          currency: "NGN",
+          redirect_url: redirectUrl,
+          merchant_reference: merchantReference,
+          ...(customerEmail ? { email: customerEmail } : {}),
+          ...(customerFirstName ? { first_name: customerFirstName } : {}),
+          ...(customerLastName ? { last_name: customerLastName } : {}),
+          ...(validPhone ? { phone: validPhone } : {}),
+          items: items.map((i) => ({
+            image_url: i.image_url || "",
+            name: i.name,
+            unit_price: Math.round(i.unit_price),
+            quantity: i.quantity,
+          })),
         },
-        onError: (err: any) => {
-          log("Klump onError", err);
+        onSuccess: (data: any) => {
+          setKlumpOpen(false);
           setLoading(false);
+          const ref = data?.data?.reference || data?.reference || merchantReference;
+          onSuccess(ref);
+        },
+        onError: () => {
+          setError("Klump payment failed or was declined. Please try again or use another method.");
+          setLoading(false);
+          setKlumpOpen(false);
+        },
+        onLoad: () => {
+          // Klump loaded successfully
         },
         onClose: () => {
-          log("Klump onClose");
           setLoading(false);
+          setKlumpOpen(false);
         },
       });
-      log("new Klump(...) constructed without throwing");
     } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      console.error(DEBUG_PREFIX, "new Klump(...) THREW:", message, err);
-      setLastError(message);
-      log("new Klump(...) THREW: " + message);
+      const msg = err instanceof Error ? err.message : "Failed to load Klump. Please check your connection.";
+      setError(msg);
       setLoading(false);
+      setKlumpOpen(false);
     }
   }
-
-  const isReady = klumpState === "ready";
 
   return (
     <div className="w-full">
-      {klumpState === "error" ? (
-        <button
-          type="button"
-          disabled
-          className="w-full bg-black text-white py-4 px-6 rounded-xl font-medium text-sm flex flex-col items-center justify-center gap-1 opacity-50 cursor-not-allowed shadow-md"
-        >
-          <span className="text-base font-semibold">Klump Widget Unavailable</span>
-          <span className="text-xs text-zinc-400">Try a different payment method</span>
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={handleClick}
-          disabled={!isReady || loading}
-          className="w-full bg-black text-white py-4 px-6 rounded-xl font-medium text-sm flex flex-col items-center justify-center gap-1 hover:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
-        >
-          <span className="text-base font-semibold">
-            {loading
-              ? "Initializing Klump..."
-              : !isReady
-              ? "Loading Klump Payment..."
-              : "Pay with Klump — Buy Now, Pay Later"}
-          </span>
-          <span className="text-xs text-zinc-400">Klump Pay in Instalments</span>
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={handleClick}
+        disabled={loading}
+        className="w-full bg-black text-white py-4 px-6 rounded-xl font-medium text-sm flex flex-col items-center justify-center gap-1 hover:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+      >
+        <span className="text-base font-semibold">
+          {loading ? "Loading Klump..." : "Pay with Klump — Buy Now, Pay Later"}
+        </span>
+        <span className="text-xs text-zinc-400">Pay in installments with Klump</span>
+      </button>
 
+      {error && <p className="text-red-500 text-xs mt-2 text-center">{error}</p>}
+
+      {klumpOpen && typeof document !== "undefined" && createPortal(
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0,
+          zIndex: 2147483647, display: "flex", justifyContent: "flex-end",
+          padding: "12px 16px", pointerEvents: "none",
+        }}>
+          <button
+            onClick={() => {
+              try {
+                const klumpDiv = document.getElementById("klump__checkout");
+                if (klumpDiv) klumpDiv.innerHTML = "";
+                document.querySelectorAll('[id^="klump"]').forEach((el) => {
+                  if (el.id !== "klump__checkout") el.remove();
+                });
+                document.querySelectorAll('iframe[src*="klump"]').forEach((el) => el.remove());
+                setKlumpOpen(false);
+                setLoading(false);
+                setError("Klump payment cancelled.");
+              } catch {
+                window.location.reload();
+              }
+            }}
+            style={{
+              pointerEvents: "auto", background: "#B30000", color: "#fff",
+              border: "none", borderRadius: "50px", padding: "12px 22px",
+              fontWeight: 800, fontSize: "14px", cursor: "pointer",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.6)",
+              display: "flex", alignItems: "center", gap: "8px",
+            }}
+          >
+            ✕ Cancel Payment
+          </button>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }

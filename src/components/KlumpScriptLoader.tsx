@@ -41,32 +41,11 @@ export default function KlumpScriptLoader() {
   return (
     <>
       {/*
-        Klump's SDK reads this div ONCE, synchronously, when the script first
-        executes (looking for id="klump__checkout" or "klump__cms__checkout"),
-        and stores a reference to it internally as `klumpCheckout`. If this
-        div doesn't exist yet at that moment, their internal reference stays
-        undefined forever — even if you add the div to the DOM later — which
-        is exactly what caused "Cannot read properties of undefined (reading
-        'appendChild')" when calling new Klump(...). It must be present
-        BEFORE the script runs, so it lives here, permanently, hidden, next
-        to the script tag itself (rather than inside the checkout page,
-        which may mount/unmount conditionally).
+        klump__checkout is the div Klump writes its modal into.
+        It must exist in the DOM before the script runs.
+        Visibility is toggled by KlumpCheckoutButton directly.
       */}
       <div id="klump__checkout" style={{ display: "none" }} />
-      <Script
-        id="klump-checkout-script"
-        src="https://js.useklump.com/klump.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          console.debug("[Klump] script onLoad fired, attempting bridge...");
-          const ok = bridgeGlobalKlump();
-          window.dispatchEvent(new Event(ok ? "klump:script-onload" : "klump:script-error"));
-        }}
-        onError={(e) => {
-          console.error("[Klump] script failed to load", e);
-          window.dispatchEvent(new Event("klump:script-error"));
-        }}
-      />
     </>
   );
 }

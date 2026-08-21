@@ -10,17 +10,17 @@ const STORES = [
   {
     name: "Mokola Store",
     address: "T24, Ground Floor, GSM Plaza, Beside MRS Petrol Station, Mokola Roundabout, Ibadan",
-    phone: "08154900493",
+    phone: "0803 443 6491",
   },
   {
     name: "Iwo Road Store",
     address: "Beside Bishop Phillips Academy, Iwo Road, Ibadan",
-    phone: "07060704481",
+    phone: "0803 443 6491",
   },
   {
     name: "Challenge Store",
     address: "Suit B12, Middle Floor, Ogo Oluwa Shopping Complex, Opposite Fidelity Bank, Challenge, Ibadan",
-    phone: "08088924598",
+    phone: "0803 443 6491",
   },
 ];
 

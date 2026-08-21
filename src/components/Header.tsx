@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ShoppingCart, Menu, X, Search } from "lucide-react";
+import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { useAuth } from "@/lib/auth-context";
 import AccountMenu from "@/components/AccountMenu";
@@ -50,22 +51,11 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex items-center justify-between"
-          animate={{ height: scrolled ? 60 : 68 }}
+          animate={{ height: scrolled ? 68 : 80 }}
           transition={{ duration: 0.25 }}
         >
-          <Link href="/" className="flex items-center gap-1 font-display font-bold text-xl tracking-tight">
-            <span className="text-signal">SAM</span>
-            <span className="relative inline-flex items-center justify-center w-6 h-6">
-              <motion.span
-                className="absolute w-6 h-6 rounded-full border-2 border-signal"
-                animate={{ opacity: [0.15, 0.4, 0.15], scale: [1, 1.15, 1] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="absolute w-4 h-4 rounded-full border-2 border-signal opacity-50" />
-              <span className="w-2 h-2 rounded-full bg-signal" />
-            </span>
-            <span>TOB</span>
-            <span className="ml-1 text-xs font-data font-normal text-steel tracking-widest">P&amp;C</span>
+          <Link href="/" className="flex items-center gap-1">
+            <Image src="/logo.jpg" alt="SAMTOB P&C Logo" width={280} height={72} className="h-16 w-auto object-contain mix-blend-multiply" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-7">

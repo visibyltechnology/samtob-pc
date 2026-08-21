@@ -7,7 +7,9 @@ import { useCart } from "@/lib/cart-context";
 import { formatNaira } from "@/lib/format";
 import BankTransferDetails from "@/components/BankTransferDetails";
 import KlumpCheckoutButton from "@/components/KlumpCheckoutButton";
+import { Check, Info, Loader2 } from "lucide-react";
 import SaveToBuyButton from "@/components/SaveToBuyButton";
+import ReceiptUploader from "@/components/ReceiptUploader";
 
 const REGIONS = [
   { value: "ibadan", label: "Within Ibadan" },
@@ -94,6 +96,7 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [receiptUrl, setReceiptUrl] = useState("");
   const [pendingOrder, setPendingOrder] = useState<PendingOrder | null>(null);
 
   const deliveryFee = useMemo(
@@ -124,6 +127,7 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
           price: i.price,
           qty: i.qty,
         })),
+        receiptUrl: receiptUrl || null,
       }),
     });
     const result = await safeJson(res);
@@ -139,17 +143,17 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
     e.preventDefault();
     setError("");
     if (items.length === 0) return;
-    if (payment === "save-to-buy") return; // handled entirely by the SaveToBuyButton modal
+    if (payment === "save-to-buy") return;
+    if (payment === "klump") {
+      // For Klump: show the button immediately, order is created after payment succeeds
+      setPendingOrder({ id: "", orderNumber: `SMT-${Date.now().toString().slice(-8)}`, total });
+      return;
+    }
     setSubmitting(true);
     try {
       const order = await createOrder();
-      if (payment === "bank-transfer") {
-        clear();
-        router.push(`/order-confirmation/${order.id}`);
-      } else {
-        // Klump: keep the cart until payment is actually verified, and reveal the Klump button
-        setPendingOrder(order);
-      }
+      clear();
+      router.push(`/order-confirmation/${order.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -158,23 +162,28 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
   }
 
   async function handleKlumpSuccess(reference: string) {
-    if (!pendingOrder) return;
+    // Create the order now that payment is confirmed
     try {
+      setSubmitting(true);
+      const order = await createOrder();
+      // Verify with Klump server-side
       const res = await fetch("/api/klump/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reference, orderId: pendingOrder.id }),
+        body: JSON.stringify({ reference, orderId: order.id }),
       });
       const result = await safeJson(res);
       if (!result.ok) throw new Error(result.error);
       clear();
-      router.push(`/order-confirmation/${pendingOrder.id}`);
+      router.push(`/order-confirmation/${order.id}`);
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
-          : "We couldn't verify your Klump payment. Please contact us on WhatsApp with your order number.",
+          : "We couldn't save your order. Please contact us on WhatsApp with reference: " + reference,
       );
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -396,8 +405,13 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
             </div>
 
             {payment === "bank-transfer" && !pendingOrder && (
-              <div className="mt-4">
+              <div className="mt-4 space-y-4">
                 <BankTransferDetails amount={formatNaira(total)} />
+                <div className="border border-line rounded-2xl p-5 space-y-3">
+                  <p className="text-sm font-semibold">Attach payment receipt (Optional)</p>
+                  <p className="text-xs text-steel">If you've already made the transfer, upload your receipt here to speed up processing.</p>
+                  <ReceiptUploader onUpload={setReceiptUrl} />
+                </div>
               </div>
             )}
           </div>
@@ -458,16 +472,17 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
           ) : (
             <div className="mt-5">
               <KlumpCheckoutButton
-                amount={pendingOrder.total}
+                amount={total}
                 shippingFee={deliveryFee}
                 items={items.map((i) => ({
                   unit_price: i.price,
                   quantity: i.qty,
                   name: i.name,
-                  image_url:
-                    typeof window !== "undefined"
-                      ? `${window.location.origin}${i.image}`
-                      : i.image,
+                  image_url: i.image.startsWith("http")
+                      ? i.image
+                      : typeof window !== "undefined"
+                        ? `${window.location.origin}${i.image}`
+                        : i.image,
                 }))}
                 customerEmail={email}
                 customerFirstName={name.trim().split(" ")[0]}
@@ -478,14 +493,13 @@ export default function CheckoutForm({ isLoggedIn }: { isLoggedIn: boolean }) {
                 merchantReference={pendingOrder.orderNumber}
                 redirectUrl={
                   typeof window !== "undefined"
-                    ? `${window.location.origin}/order-confirmation/${pendingOrder.id}`
+                    ? `${window.location.origin}/checkout`
                     : ""
                 }
                 onSuccess={handleKlumpSuccess}
               />
               <p className="text-xs text-steel mt-3 text-center">
-                Order {pendingOrder.orderNumber} created — click above to
-                complete payment with Klump.
+                Click above to pay with Klump — Buy Now, Pay Later.
               </p>
             </div>
           )}

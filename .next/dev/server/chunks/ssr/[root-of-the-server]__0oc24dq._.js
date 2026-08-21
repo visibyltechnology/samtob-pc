@@ -104,7 +104,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/@supabase/ssr/dist/module/createBrowserClient.js [app-ssr] (ecmascript)");
 ;
 function createClient() {
-    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(("TURBOPACK compile-time value", "https://qaslwnwmcqryiogkumdr.supabase.co"), ("TURBOPACK compile-time value", "sb_publishable_-cAVW6Y5gXW7bkMnHY8Leg_SZhgNVKh"));
 }
 }),
 "[project]/Desktop/samtob/src/lib/auth-context.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
@@ -328,9 +328,7 @@ __turbopack_context__.s([
     ()=>KlumpScriptLoader
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$script$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/samtob/node_modules/next/script.js [app-ssr] (ecmascript)");
 "use client";
-;
 ;
 /**
  * Loads the Klump checkout SDK exactly once for the whole app.
@@ -365,37 +363,17 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_mo
 }
 function KlumpScriptLoader() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                id: "klump__checkout",
-                style: {
-                    display: "none"
-                }
-            }, void 0, false, {
-                fileName: "[project]/Desktop/samtob/src/components/KlumpScriptLoader.tsx",
-                lineNumber: 55,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$script$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                id: "klump-checkout-script",
-                src: "https://js.useklump.com/klump.js",
-                strategy: "afterInteractive",
-                onLoad: ()=>{
-                    console.debug("[Klump] script onLoad fired, attempting bridge...");
-                    const ok = bridgeGlobalKlump();
-                    window.dispatchEvent(new Event(ok ? "klump:script-onload" : "klump:script-error"));
-                },
-                onError: (e)=>{
-                    console.error("[Klump] script failed to load", e);
-                    window.dispatchEvent(new Event("klump:script-error"));
-                }
-            }, void 0, false, {
-                fileName: "[project]/Desktop/samtob/src/components/KlumpScriptLoader.tsx",
-                lineNumber: 56,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true);
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$samtob$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            id: "klump__checkout",
+            style: {
+                display: "none"
+            }
+        }, void 0, false, {
+            fileName: "[project]/Desktop/samtob/src/components/KlumpScriptLoader.tsx",
+            lineNumber: 48,
+            columnNumber: 7
+        }, this)
+    }, void 0, false);
 }
 }),
 "[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {

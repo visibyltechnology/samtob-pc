@@ -4,11 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import BankTransferDetails from "@/components/BankTransferDetails";
+import ReceiptUploader from "@/components/ReceiptUploader";
+import { SAVE_TO_BUY_BANK_DETAILS } from "@/lib/payment-config";
 import { useToast } from "@/components/motion/Toast";
 
 export default function ContributionForm({ planId, suggestedAmount }: { planId: string; suggestedAmount: number }) {
   const [amount, setAmount] = useState(suggestedAmount);
   const [reference, setReference] = useState("");
+  const [receiptUrl, setReceiptUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
   const { showToast } = useToast();
@@ -20,12 +23,13 @@ export default function ContributionForm({ planId, suggestedAmount }: { planId: 
       const res = await fetch(`/api/save-to-buy/${planId}/contributions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount, bankReference: reference || null }),
+        body: JSON.stringify({ amount, bankReference: reference || null, receiptUrl: receiptUrl || null }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not record contribution");
       showToast("Contribution submitted — awaiting confirmation", "success");
       setReference("");
+      setReceiptUrl("");
       router.refresh();
     } catch (err) {
       showToast(err instanceof Error ? err.message : "Could not record contribution", "error");
@@ -36,7 +40,7 @@ export default function ContributionForm({ planId, suggestedAmount }: { planId: 
 
   return (
     <div className="space-y-4">
-      <BankTransferDetails />
+      <BankTransferDetails details={SAVE_TO_BUY_BANK_DETAILS} />
       <form onSubmit={handleSubmit} className="border border-line rounded-2xl p-5 space-y-3">
         <p className="text-sm font-semibold">Log a contribution</p>
         <p className="text-xs text-steel">After transferring, tell us how much and your reference so we can confirm it.</p>
@@ -62,6 +66,7 @@ export default function ContributionForm({ planId, suggestedAmount }: { planId: 
             />
           </div>
         </div>
+        <ReceiptUploader onUpload={setReceiptUrl} />
         <motion.button
           whileTap={{ scale: 0.97 }}
           disabled={submitting}

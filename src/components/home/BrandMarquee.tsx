@@ -19,7 +19,7 @@ export default function BrandMarquee() {
         {loop.map((brand, i) => (
           <span
             key={i}
-            className="font-display font-bold text-xl sm:text-2xl text-ink/20 tracking-tight whitespace-nowrap select-none"
+            className="font-display font-bold text-xl sm:text-2xl text-signal tracking-tight whitespace-nowrap select-none"
           >
             {brand}
           </span>

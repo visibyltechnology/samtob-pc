@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "How many years of guaranty do you offer on a laptop or mobile?",
-    a: "Brand new devices come with a 1-year warranty. UK used devices come with a 30-day limited guaranty (laptop/mobile only).",
+    a: "Brand new devices come with a 1-year warranty. UK used devices come with a 30 days warranty (laptop/mobile only).",
   },
   {
     q: "My UK used laptop ran into a problem after 30 days of purchase — what can I do?",

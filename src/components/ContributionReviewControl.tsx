@@ -11,6 +11,7 @@ export default function ContributionReviewControl({ contributionId }: { contribu
   const { showToast } = useToast();
 
   async function handle(status: "confirmed" | "rejected") {
+    if (!window.confirm(`Are you sure you want to mark this contribution as ${status}?`)) return;
     setLoading(status);
     try {
       const res = await fetch(`/api/save-to-buy/contributions/${contributionId}`, {

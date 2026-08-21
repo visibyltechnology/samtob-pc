@@ -37,7 +37,7 @@ function CopyField({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function BankTransferDetails({ amount }: { amount?: string }) {
+export default function BankTransferDetails({ amount, details = BANK_DETAILS }: { amount?: string; details?: typeof BANK_DETAILS }) {
   return (
     <div className="rounded-2xl border border-signal/20 bg-signal/5 p-5">
       <p className="text-sm font-semibold mb-1">Pay by Bank Transfer</p>
@@ -45,9 +45,9 @@ export default function BankTransferDetails({ amount }: { amount?: string }) {
         {amount ? `Transfer ${amount} to the account below.` : "Transfer the order total to the account below."} We'll confirm your payment and begin processing your order.
       </p>
       <div className="divide-y divide-signal/10">
-        <CopyField label="Account Name" value={BANK_DETAILS.accountName} />
-        <CopyField label="Account Number" value={BANK_DETAILS.accountNumber} />
-        <CopyField label="Bank" value={BANK_DETAILS.bankName} />
+        <CopyField label="Account Name" value={details.accountName} />
+        <CopyField label="Account Number" value={details.accountNumber} />
+        <CopyField label="Bank" value={details.bankName} />
       </div>
     </div>
   );

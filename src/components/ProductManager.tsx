@@ -93,7 +93,7 @@ export default function ProductManager({ products }: { products: Product[] }) {
               <tr key={p.id}>
                 <td className="px-4 py-3">
                   <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-[#F5F4F0] border border-line">
-                    <Image src={p.images[0]} alt={p.name} fill className="object-contain p-1" />
+                    <Image src={p.images[0]} alt={p.name} fill sizes="40px" className="object-contain p-1" />
                   </div>
                 </td>
                 <td className="px-4 py-3 font-medium max-w-[240px] truncate">{p.name}</td>

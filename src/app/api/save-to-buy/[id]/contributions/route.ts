@@ -22,7 +22,7 @@ export async function POST(
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id: planId } = await params;
-  const { amount, bankReference } = await req.json();
+  const { amount, bankReference, receiptUrl } = await req.json();
 
   if (!amount || amount <= 0) {
     return NextResponse.json({ error: "A positive amount is required" }, { status: 400 });
@@ -31,7 +31,7 @@ export async function POST(
   const supabase = await createClient();
   try {
     const contribution = await database.createContribution(
-      { planId, amount, bankReference: bankReference || null },
+      { planId, amount, bankReference: bankReference || null, receiptUrl: receiptUrl || null },
       supabase
     );
     return NextResponse.json({ contribution }, { status: 201 });

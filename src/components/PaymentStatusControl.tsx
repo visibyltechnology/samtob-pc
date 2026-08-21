@@ -31,6 +31,7 @@ export default function PaymentStatusControl({
   }
 
   async function markPaid() {
+    if (!window.confirm("Are you sure you want to mark this payment as received? This action cannot be undone.")) return;
     setLoading(true);
     try {
       const res = await fetch(`/api/orders/${orderId}`, {

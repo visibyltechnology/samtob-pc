@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
     items,
     paymentMethod,
     bankReference,
+    receiptUrl,
   } = body;
 
   if (!items || !Array.isArray(items) || items.length === 0) {
@@ -65,6 +66,7 @@ export async function POST(req: NextRequest) {
         total: subtotal + deliveryFee,
         paymentMethod,
         bankReference: bankReference || null,
+        receiptUrl: receiptUrl || null,
       },
       supabase
     );

@@ -67,9 +67,9 @@ export default function Footer() {
         <div>
           <h4 className="font-display font-semibold text-sm tracking-wide mb-4 text-paper/90">Contact</h4>
           <ul className="space-y-2.5 text-sm text-paper/60 font-data">
-            <li>Mokola: 08154900493</li>
-            <li>Iwo Road: 07060704481</li>
-            <li>Challenge: 08088924598</li>
+            <li>Mokola: 0803 443 6491</li>
+            <li>Iwo Road: 0803 443 6491</li>
+            <li>Challenge: 0803 443 6491</li>
             <li className="pt-1">Mon–Fri 9am–6pm</li>
             <li>Sat 9:30am–5pm · Sun Closed</li>
           </ul>
