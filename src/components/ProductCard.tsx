@@ -56,7 +56,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="relative aspect-square bg-[#F5F4F0] overflow-hidden">
           <motion.div
             className="absolute inset-0"
-            whileHover={{ scale: 1.08 }}
+            whileHover={{ scale: 1.15 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <Image
@@ -64,7 +64,7 @@ export default function ProductCard({ product }: { product: Product }) {
               alt={product.name}
               fill
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
-              className="object-contain p-6"
+              className="object-contain p-0 scale-110"
             />
           </motion.div>
           <span className="absolute top-3 left-3 text-[10px] font-data uppercase tracking-wider bg-ink text-white px-2 py-1 rounded-full">
@@ -86,10 +86,10 @@ export default function ProductCard({ product }: { product: Product }) {
           <h3 className="font-display font-semibold text-sm leading-snug line-clamp-2 group-hover:text-signal transition-colors">
             {product.name}
           </h3>
-          <div className="mt-auto flex items-baseline gap-2 pt-1">
-            <span className="font-data font-semibold text-ink">{formatNaira(product.price)}</span>
+          <div className="mt-auto flex flex-wrap items-baseline gap-1.5 sm:gap-2 pt-1">
+            <span className="font-data font-semibold text-ink text-sm sm:text-base">{formatNaira(product.price)}</span>
             {product.oldPrice && (
-              <span className="font-data text-xs text-steel line-through">{formatNaira(product.oldPrice)}</span>
+              <span className="font-data text-[10px] sm:text-xs text-steel line-through">{formatNaira(product.oldPrice)}</span>
             )}
           </div>
           <SignalBars stock={product.stock} />

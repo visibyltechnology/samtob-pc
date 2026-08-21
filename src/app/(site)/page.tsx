@@ -4,6 +4,7 @@ import { database } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
 import Hero from "@/components/home/Hero";
 import TopBanner from "@/components/TopBanner";
+import FlashSaleSection from "@/components/home/FlashSaleSection";
 import BrandMarquee from "@/components/home/BrandMarquee";
 import Reveal from "@/components/motion/Reveal";
 import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
@@ -14,6 +15,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const products = await database.getProducts();
   const featured = products.filter((p) => p.featured).slice(0, 8);
+  const flashSales = products.filter((p) => p.oldPrice && p.oldPrice > p.price);
   const reviews = await database.getReviews();
 
   return (
@@ -21,6 +23,8 @@ export default async function Home() {
       <Hero />
       <TopBanner />
       <BrandMarquee />
+
+      <FlashSaleSection products={flashSales} />
 
       {/* STATS STRIP */}
       <section className="border-b border-line bg-white">
@@ -42,8 +46,8 @@ export default async function Home() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-16">
+        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
           {[
             { label: "Laptops", href: "/products?category=laptops", desc: "New &amp; UK used, all specs" },
             { label: "Phones", href: "/products?category=phones", desc: "iPhone, Samsung &amp; more" },
@@ -52,15 +56,17 @@ export default async function Home() {
             <StaggerItem key={c.href}>
               <Link
                 href={c.href}
-                className="group block rounded-2xl border border-line bg-white p-7 hover:border-signal/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group flex flex-row items-center justify-between sm:flex-col sm:items-start sm:block rounded-xl sm:rounded-2xl border border-line bg-white p-4 sm:p-7 hover:border-signal/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <span className="text-xs font-data uppercase tracking-widest text-steel">Category</span>
-                <h3 className="font-display font-bold text-2xl mt-2 group-hover:text-signal transition-colors">
-                  {c.label}
-                </h3>
-                <p className="text-sm text-steel mt-1" dangerouslySetInnerHTML={{ __html: c.desc }} />
-                <span className="inline-flex items-center gap-1 text-sm font-medium mt-4 text-signal">
-                  Browse{" "}
+                <div>
+                  <span className="text-xs font-data uppercase tracking-widest text-steel hidden sm:block">Category</span>
+                  <h3 className="font-display font-bold text-lg sm:text-2xl sm:mt-2 group-hover:text-signal transition-colors">
+                    {c.label}
+                  </h3>
+                  <p className="text-[11px] sm:text-sm text-steel mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-none" dangerouslySetInnerHTML={{ __html: c.desc }} />
+                </div>
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-signal/10 sm:bg-transparent text-signal sm:w-auto sm:h-auto sm:text-sm font-medium sm:mt-4 sm:rounded-none">
+                  <span className="hidden sm:inline mr-1">Browse</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>

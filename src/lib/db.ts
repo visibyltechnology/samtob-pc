@@ -18,6 +18,7 @@ export type Product = {
   description: string;
   images: string[];
   featured: boolean;
+  isFlashSale: boolean;
 };
 
 export type OrderItem = {
@@ -95,6 +96,7 @@ function toProduct(r: any): Product {
     description: r.description,
     images: r.images || [],
     featured: r.featured,
+    isFlashSale: r.is_flash_sale || false,
   };
 }
 
@@ -113,6 +115,7 @@ function fromProduct(p: Partial<Product>) {
   if (p.description !== undefined) row.description = p.description;
   if (p.images !== undefined) row.images = p.images;
   if (p.featured !== undefined) row.featured = p.featured;
+  if (p.isFlashSale !== undefined) row.is_flash_sale = p.isFlashSale;
   return row;
 }
 
@@ -196,6 +199,7 @@ export const database = {
 
   async saveProduct(product: Partial<Product> & { id?: string }, client: SupabaseClient): Promise<Product> {
     const row = fromProduct(product);
+
     if (product.id) {
       const { data, error } = await client.from("products").update(row).eq("id", product.id).select().single();
       if (error) throw error;

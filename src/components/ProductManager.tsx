@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import type { Product } from "@/lib/db";
 import { formatNaira } from "@/lib/format";
-import { Plus, Trash2, Pencil, X } from "lucide-react";
+import { Plus, Trash2, Pencil, X, Zap } from "lucide-react";
 import { useToast } from "@/components/motion/Toast";
 import ImageUploader from "@/components/ImageUploader";
 
@@ -22,6 +22,7 @@ const EMPTY: Partial<Product> = {
   description: "",
   images: [],
   featured: false,
+  isFlashSale: false,
   specs: {},
 };
 
@@ -96,7 +97,10 @@ export default function ProductManager({ products }: { products: Product[] }) {
                     <Image src={p.images[0]} alt={p.name} fill sizes="40px" className="object-contain p-1" />
                   </div>
                 </td>
-                <td className="px-4 py-3 font-medium max-w-[240px] truncate">{p.name}</td>
+                <td className="px-4 py-3 font-medium max-w-[240px] truncate">
+                  {p.name}
+                  {p.isFlashSale && <span className="ml-2 bg-signal/10 text-signal px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1"><Zap size={10} className="fill-signal" /> Flash Sale</span>}
+                </td>
                 <td className="px-4 py-3 capitalize text-steel">{p.category}</td>
                 <td className="px-4 py-3 font-data">{formatNaira(p.price)}</td>
                 <td className="px-4 py-3 font-data">{p.stock}</td>
@@ -164,10 +168,12 @@ export default function ProductManager({ products }: { products: Product[] }) {
                 <input type="number" placeholder="Warranty (days)" value={editing.warrantyDays ?? ""} onChange={(e) => setEditing({ ...editing, warrantyDays: Number(e.target.value) })} className="border border-line rounded-lg px-3 py-2 text-sm" />
               </div>
               <textarea placeholder="Description" rows={3} value={editing.description} onChange={(e) => setEditing({ ...editing, description: e.target.value })} className="w-full border border-line rounded-lg px-3 py-2 text-sm" />
-              <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" checked={!!editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} />
-                Feature on homepage
-              </label>
+              <div className="flex items-center gap-4 text-sm mt-2">
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" checked={!!editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} />
+                  Feature on homepage
+                </label>
+              </div>
               <button disabled={saving} className="w-full bg-ink text-paper py-2.5 rounded-full text-sm font-medium hover:bg-signal transition-colors disabled:opacity-60">
                 {saving ? "Saving..." : "Save Product"}
               </button>

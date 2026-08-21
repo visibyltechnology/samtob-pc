@@ -11,8 +11,7 @@ export default function TopBanner() {
 
   useEffect(() => {
     setMounted(true);
-    // Optional: Check sessionStorage if user dismissed the banner this session
-    const dismissed = sessionStorage.getItem("flashSalesDismissed");
+    const dismissed = sessionStorage.getItem("topBannerDismissed");
     if (dismissed === "true") {
       setIsVisible(false);
     }
@@ -20,7 +19,7 @@ export default function TopBanner() {
 
   const handleDismiss = () => {
     setIsVisible(false);
-    sessionStorage.setItem("flashSalesDismissed", "true");
+    sessionStorage.setItem("topBannerDismissed", "true");
   };
 
   if (!mounted) return null;
@@ -41,7 +40,7 @@ export default function TopBanner() {
             >
               <Zap size={16} className="fill-white animate-pulse hidden sm:block" />
               <span>
-                <strong className="font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded mr-2">Flash Sale</strong>
+                <strong className="font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded mr-2">Promo</strong>
                 Up to 20% off selected UK used laptops! Shop now.
               </span>
             </Link>
