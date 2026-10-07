@@ -1,6 +1,8 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "routes": [
-    { "src": "/(.*)", "dest": "https://granite-edge-studio.vercel.app/$1" }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "https://granite-edge-studio.vercel.app/$1"
+    }
   ]
 }
