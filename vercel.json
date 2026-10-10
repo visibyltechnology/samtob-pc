@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "https://samtob-backend-prod.vercel.app/$1"
+    }
+  ]
+}
